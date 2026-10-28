@@ -3,4 +3,4 @@
 source 'https://rubygems.org'
 
 gem 'puma', '~> 5.6', '>= 5.6.4'
-gem 'teakflake', '~> 0.1.3'
+gem 'teakflake', '~> 0.1.4'
