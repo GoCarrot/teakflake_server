@@ -1,14 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    benchmark (0.5.0)
+    logger (1.7.0)
     logsformyfamily (0.3.0)
     nio4r (2.7.5)
     puma (5.6.4)
       nio4r (~> 2.0)
-    rack (2.2.3.1)
-    teakflake (0.1.4)
+    rack (2.2.25)
+    teakflake (0.1.5)
+      benchmark
+      logger
       logsformyfamily (~> 0.3.0)
-      rack (~> 2.2, >= 2.2.3.1)
+      rack (~> 2.2, >= 2.2.24)
       zk (~> 1.10)
     zk (1.10.0)
       zookeeper (~> 1.5.0)
@@ -19,7 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   puma (~> 5.6, >= 5.6.4)
-  teakflake (~> 0.1.4)
+  teakflake (~> 0.1.5)
 
 BUNDLED WITH
    2.5.22
