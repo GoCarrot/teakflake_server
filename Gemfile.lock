@@ -2,10 +2,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     benchmark (0.5.0)
+    bundler-audit (0.9.3)
+      bundler (>= 1.2.0)
+      thor (~> 1.0)
     logger (1.7.0)
     logsformyfamily (0.3.0)
     nio4r (2.7.5)
-    puma (5.6.4)
+    puma (8.0.2)
       nio4r (~> 2.0)
     rack (2.2.25)
     teakflake (0.1.5)
@@ -14,6 +17,7 @@ GEM
       logsformyfamily (~> 0.3.0)
       rack (~> 2.2, >= 2.2.24)
       zk (~> 1.10)
+    thor (1.5.0)
     zk (1.10.0)
       zookeeper (~> 1.5.0)
     zookeeper (1.5.5)
@@ -22,7 +26,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  puma (~> 5.6, >= 5.6.4)
+  bundler-audit (~> 0.8)
+  puma (~> 8.0, >= 8.0.2)
   teakflake (~> 0.1.5)
 
 BUNDLED WITH
