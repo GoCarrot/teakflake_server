@@ -1,0 +1,68 @@
+version: 2.1
+
+parameters:
+  scheduled_run:
+    type: boolean
+    default: false
+
+references:
+  RUBY_IMAGE: &RUBY_IMAGE
+    cimg/ruby:3.3.13
+  BUNDLE_CACHE_KEY: &BUNDLE_CACHE_KEY
+    v1-teakflake-server-bundle-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+orbs:
+  slack: circleci/slack@6.1
+
+jobs:
+  refresh_ruby_deps:
+    docker:
+      - image: *RUBY_IMAGE
+    working_directory: ~/teakflake_server
+    steps:
+      - checkout
+      - restore_cache:
+          key: *BUNDLE_CACHE_KEY
+      - run: bundle config set --local path 'vendor/bundle'
+      - run: bundle install --jobs 3 --retry 3
+      - save_cache:
+          key: *BUNDLE_CACHE_KEY
+          paths:
+            - ~/teakflake_server/vendor/bundle
+            - ~/teakflake_server/.bundle
+
+  lint_bundler_audit:
+    docker:
+      - image: *RUBY_IMAGE
+    working_directory: ~/teakflake_server
+    steps:
+      - checkout
+      - restore_cache:
+          key: *BUNDLE_CACHE_KEY
+      - run: bundle config set --local path 'vendor/bundle'
+      - run: bundle exec bundle-audit check --update
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+workflows:
+  audit:
+    when:
+      not: << pipeline.parameters.scheduled_run >>
+    jobs:
+      - refresh_ruby_deps
+      - lint_bundler_audit:
+          context:
+            - Slack
+          requires:
+            - refresh_ruby_deps
+
+  period_dependency_audits:
+    when: << pipeline.parameters.scheduled_run >>
+    jobs:
+      - refresh_ruby_deps
+      - lint_bundler_audit:
+          context:
+            - Slack
+          requires:
+            - refresh_ruby_deps
