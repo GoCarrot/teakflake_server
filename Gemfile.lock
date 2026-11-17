@@ -8,7 +8,7 @@ GEM
     logger (1.7.0)
     logsformyfamily (0.3.0)
     nio4r (2.7.5)
-    puma (8.0.2)
+    puma (8.0.3)
       nio4r (~> 2.0)
     rack (2.2.25)
     teakflake (0.1.5)
@@ -27,7 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler-audit (~> 0.8)
-  puma (~> 8.0, >= 8.0.2)
+  puma (~> 8.0, >= 8.0.3)
   teakflake (~> 0.1.5)
 
 BUNDLED WITH
