@@ -7,7 +7,7 @@ parameters:
 
 references:
   RUBY_IMAGE: &RUBY_IMAGE
-    cimg/ruby:3.3.13
+    cimg/ruby:3.3.14
   BUNDLE_CACHE_KEY: &BUNDLE_CACHE_KEY
     v1-teakflake-server-bundle-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
 
