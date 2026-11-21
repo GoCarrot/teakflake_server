@@ -10,7 +10,7 @@ GEM
     nio4r (2.7.5)
     puma (8.0.3)
       nio4r (~> 2.0)
-    rack (2.2.25)
+    rack (2.2.26)
     teakflake (0.1.5)
       benchmark
       logger
